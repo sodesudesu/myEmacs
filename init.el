@@ -141,7 +141,7 @@
 ;;; 行番号の表示
 (require 'linum)
 (global-linum-mode t)
-(setq linum-format "%4d")
+(setq linum-format "%4d ")
 
 ;;; python
 (setq python-shell-interpreter "ipython"
@@ -154,7 +154,7 @@
 ;;; 括弧の設定
 ;; あらかじめrainbow-delimitersをインストールしておく
 (require 'rainbow-delimiters) ; 括弧の色付け
-(global-rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;;; helm
 (require 'helm-config)
