@@ -107,7 +107,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(helm rainbow-delimiters yatex markdown-preview-mode markdown-mode ess twittering-mode magit)))
+   '(multi-term helm rainbow-delimiters yatex markdown-preview-mode markdown-mode ess twittering-mode magit)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -156,5 +156,10 @@
 (require 'rainbow-delimiters) ; 括弧の色付け
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
-;;; helm
-(require 'helm-config)
+;;; ターミナルをmulti-termにする（事前に要インストール）
+(when (require `multi-term nil t)
+  (setq multi-term-program "/bin/bash")) ; 使用するシェルの選択
+
+;;; cperl-mode（デフォルトで同梱されている）
+; デフォルトでcperl-modeを開くように設定
+(defalias `perl-mode `cperl-mode)
