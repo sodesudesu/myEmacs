@@ -1,0 +1,58 @@
+;;; 環境設定
+;; 日本語化
+(set-language-environment 'Japanese)
+
+;; 上のボタンを消す
+(menu-bar-mode -1) ; menuバー非表示
+(tool-bar-mode 0) ; toolバー非表示
+
+;; バックスラッシュの設定
+(define-key global-map [?¥] [?\\]) ; mac本体の設定で変えられないの？
+
+;; 行番号を表示
+(require `linum)
+(global-linum-mode t)
+(setq linum-format "%4d ")
+
+;; 括弧を目立たせる
+(require `rainbow-delimiters)
+(add-hook `prog-mode-hook `rainbow-delimiters-mode)
+
+;; タイトルバーはフルパスを表示
+(setq frame-title-format "%f")
+
+;;; melpaの設定
+(require `package)
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
+;;; markdown mode
+;; 要インストール
+(add-to-list `auto-mode-alist `("\\.markdown\\`" . markdown-mode))
+(add-to-list `auto-mode-alist `("\\.md\\`" . markdown-mode))
+(add-to-list `auto-mode-alist `("README\\.md\\`" . gfm-mode))
+
+;;; markdown preview mode
+(setq markdown-preview-stylesheets
+      (list "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css"))
+
+;;; python
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "--matplotlib --no-automagic -i")
+
+;;; cperl-mode（デフォルトで同梱されている）
+; デフォルトでcperl-modeを開くように設定
+(defalias `perl-mode `cperl-mode)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(company markdown-mode rainbow-delimiters)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
